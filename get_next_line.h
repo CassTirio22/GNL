@@ -6,7 +6,7 @@
 /*   By: ctirions <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 13:19:47 by ctirions          #+#    #+#             */
-/*   Updated: 2020/12/21 15:51:43 by ctirions         ###   ########.fr       */
+/*   Updated: 2020/12/22 14:13:15 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 
 int		get_next_line(int fd, char **line);
 char	*ft_linecpy(char *save);
+char	*ft_savecpy(char *save);
 char	*ft_strdup(char *save);
-char	*ft_strchr_nl(char *save);
 
 /*
 **		UTILS FONCLTIONS
