@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ctirions <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/12 13:19:44 by ctirions          #+#    #+#             */
-/*   Updated: 2020/12/22 14:11:24 by ctirions         ###   ########.fr       */
+/*   Created: 2020/12/26 17:34:37 by ctirions          #+#    #+#             */
+/*   Updated: 2020/12/26 17:34:41 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_check_error(int fd, char **line)
 {
@@ -84,12 +84,12 @@ int		get_next_line(int fd, char **line)
 {
 	char			*buffer;
 	long long int	reader;
-	static char		*savec;
+	static char		*save[OPEN_MAX];
 
 	reader = 1;
 	if (!(buffer = ft_check_error(fd, line)))
 		return (-1);
-	while (!ft_isreturn(save) && reader != 0)
+	while (!ft_isreturn(save[fd]) && reader != 0)
 	{
 		if ((reader = read(fd, buffer, BUFFER_SIZE)) == -1)
 		{
@@ -97,12 +97,12 @@ int		get_next_line(int fd, char **line)
 			return (-1);
 		}
 		buffer[reader] = 0;
-		if (!(save = ft_strjoin(save, buffer)))
+		if (!(save[fd] = ft_strjoin(save[fd], buffer)))
 			return (-1);
 	}
 	free(buffer);
-	if (!(*line = ft_linecpy(save)) ||\
-	(!(save = ft_savecpy(save)) && reader != 0))
+	if (!(*line = ft_linecpy(save[fd])) ||\
+	(!(save[fd] = ft_savecpy(save[fd])) && reader != 0))
 		return (-1);
 	if (!reader)
 		return (0);
