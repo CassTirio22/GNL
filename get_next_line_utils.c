@@ -32,8 +32,9 @@ void	*ft_calloc(int size, int count)
 	if (!(res = (char *)malloc(sizeof(void) * (size * count))))
 		return (NULL);
 	i = -1;
-	while (++i < size * count)
-		res[i] = 0;
+	while (++i < size * count - 1)
+		;
+	res[i] = 0;
 	return ((void *)res);
 }
 

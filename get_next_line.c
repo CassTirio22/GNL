@@ -12,6 +12,17 @@
 
 #include "get_next_line.h"
 
+char	*ft_check_error(int fd, char **line)
+{
+	char	*buffer;
+
+	if (fd < 0 || !line || BUFFER_SIZE <= 0 || fd > OPEN_MAX)
+		return (NULL);
+	if (!(buffer = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1)))
+		return (NULL);
+	return (buffer);
+}
+
 char	*ft_strdup(char *save)
 {
 	size_t	i;
@@ -76,8 +87,7 @@ int		get_next_line(int fd, char **line)
 	static char		*save[OPEN_MAX];
 
 	reader = 1;
-	if (fd < 0 || !line || BUFFER_SIZE <= 0 || fd > OPEN_MAX ||\
-		!(buffer = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1)))
+	if (!(buffer = ft_check_error(fd, line)))
 		return (-1);
 	while (!ft_isreturn(save[fd]) && reader != 0)
 	{
@@ -87,11 +97,13 @@ int		get_next_line(int fd, char **line)
 			return (-1);
 		}
 		buffer[reader] = 0;
-		save[fd] = ft_strjoin(save[fd], buffer);
+		if (!(save[fd] = ft_strjoin(save[fd], buffer)))
+			return (-1);
 	}
 	free(buffer);
-	*line = ft_linecpy(save[fd]);
-	save[fd] = ft_savecpy(save[fd]);
+	if (!(*line = ft_linecpy(save[fd])) ||\
+	(!(save[fd] = ft_savecpy(save[fd])) && reader != 0))
+		return (-1);
 	if (!reader)
 		return (0);
 	return (1);
