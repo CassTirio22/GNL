@@ -27,14 +27,10 @@ int		ft_strlen(const char *str)
 void	*ft_calloc(int size, int count)
 {
 	char	*res;
-	int		i;
 
 	if (!(res = (char *)malloc(sizeof(void) * (size * count))))
 		return (NULL);
-	i = -1;
-	while (++i < size * count - 1)
-		;
-	res[i] = 0;
+	res[size * count - 1] = 0;
 	return ((void *)res);
 }
 
