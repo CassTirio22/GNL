@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctirions <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 13:19:44 by ctirions          #+#    #+#             */
-/*   Updated: 2020/12/22 14:11:24 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/02/23 14:44:49 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int		get_next_line(int fd, char **line)
 {
 	char			*buffer;
 	long long int	reader;
-	static char		*savec;
+	static char		*save;
 
 	reader = 1;
 	if (!(buffer = ft_check_error(fd, line)))

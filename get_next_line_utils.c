@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ctirions <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 13:19:49 by ctirions          #+#    #+#             */
-/*   Updated: 2020/12/21 18:08:58 by ctirions         ###   ########.fr       */
+/*   Updated: 2021/02/23 14:45:07 by ctirions         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int		ft_strlen(const char *str)
 void	*ft_calloc(int size, int count)
 {
 	char	*res;
-	int		i;
 
 	if (!(res = (char *)malloc(sizeof(void) * (size * count))))
 		return (NULL);
